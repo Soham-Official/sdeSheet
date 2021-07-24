@@ -1,0 +1,33 @@
+https://practice.geeksforgeeks.org/problems/job-sequencing-problem-1587115620/1#
+
+
+static bool mycmp(Job arr1[],Job arr2[])
+    {
+        return (arr1->profit > arr2->profit);
+    }
+    public:
+    vector<int> JobScheduling(Job arr[], int n) 
+    { 
+        sort(arr, arr+n, [](Job arr1, Job arr2){ return arr1.profit > arr2.profit; });
+        vector<int>v(101,0);
+        int count=0,sum=0;
+        for(int i=0;i<n;i++)
+        {
+            int x=arr[i].dead;
+            while(x>0)
+            {
+                if(v[x]==0)
+                {
+                    count++;
+                    sum+=arr[i].profit;
+                    v[x]=1;
+                    break;
+                }
+                 x--;
+            }
+        }
+        vector<int>ans;
+        ans.push_back(count);
+        ans.push_back(sum);
+        return ans;
+    } 
