@@ -1,0 +1,27 @@
+https://practice.geeksforgeeks.org/problems/fractional-knapsack-1587115620/1
+
+static bool mycmp(Item a,Item b)
+    {
+       double r1 = (double)a.value / a.weight;
+       double r2 = (double)b.value / b.weight;
+       return r1 > r2;
+    }
+    double fractionalKnapsack(int w, Item arr[], int n)
+    {
+        sort(arr,arr+n,mycmp);
+        double profit=0.0;
+        for(int i=0;i<n;i++)
+        {
+            if(arr[i].weight <=w)
+            {
+                w-= arr[i].weight;
+                profit+=arr[i].value;
+            }
+            else
+            {
+                profit+=arr[i].value * ((double) w / arr[i].weight);
+                break;
+            }
+        }
+        return profit;
+    }
