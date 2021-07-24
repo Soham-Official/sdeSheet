@@ -1,0 +1,32 @@
+https://practice.geeksforgeeks.org/problems/m-coloring-problem-1587115620/1#
+
+bool isPossible(int col,bool graph[101][101],int n,int color[],int v)
+{
+    for(int i=0;i<n;i++)
+    {
+        if(i!=v and graph[v][i]==1 and color[i]==col)
+        return false;
+    }
+    return true;
+}
+bool solve(int v,bool graph[101][101], int m, int n,int color[])
+{
+    if(v==n)
+    return true;
+    for(int i=1;i<=m;i++)
+    {
+        if(isPossible(i,graph,n,color,v))
+        {
+            color[v]=i;
+            if(solve(v+1,graph,m,n,color))
+            return true;
+            color[v]=0;
+        }
+    }
+    return false;
+}
+bool graphColoring(bool graph[101][101], int m, int n)
+{
+    int color[n]={0};
+    return solve(0,graph,m,n,color);
+}
