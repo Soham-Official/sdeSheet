@@ -1,0 +1,19 @@
+https://practice.geeksforgeeks.org/problems/count-total-set-bits-1587115620/0/?track=dsa-workshop-1-bit-magic&batchId=308
+
+
+int countSetBits(int n)
+    {
+        if(n==0)
+        return 0;
+        long long int p=0;
+        while(pow(2,p)<=n)
+          p++;  
+        p=p-1;
+        long long  int ans,m;
+        long long int p1=pow(2,p-1);
+        long long int p2=pow(2,p);
+        ans=(p*p1)+n-p2+1;
+        // ans=(p2*(p-1))+n-(p1+1);
+        m=ans+countSetBits(n-p2);
+        return m;
+    }
