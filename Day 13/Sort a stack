@@ -1,0 +1,23 @@
+https://practice.geeksforgeeks.org/problems/sort-a-stack/1
+
+void insert(stack<int> &s,int x){
+    if(s.empty() or s.top()<x)
+    s.push(x);
+    else
+    {
+        int temp=s.top();
+        s.pop();
+        insert(s,x);
+        s.push(temp);
+    }
+}
+void SortedStack :: sort()
+{
+   if(!s.empty())
+   {
+       int x=s.top();
+       s.pop();
+       sort();
+       insert(s,x);
+   }
+}
